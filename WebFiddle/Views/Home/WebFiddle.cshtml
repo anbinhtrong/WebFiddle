@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewBag.Title = "WebFiddle";
+    Layout = "~/Views/Shared/_NewLayout.cshtml";
+}
+<style type="text/css">
+    .row-margin{
+        margin: 1em;
+    }
+</style>
+
+<h2>Web Fiddle</h2>
+<div class="row" ng-app="WebApp" ng-controller="HomeCtrl">
+    <div class="col-lg-7">
+        <div class="row row-margin">
+            <div class="col-lg-2">
+                <select class="form-control" ng-model="method" ng-options="item as item for item in methods">                    
+                </select>
+            </div>
+            <div class="col-lg-10">
+                <input type="url" ng-model="url" class="form-control" />
+            </div>
+        </div>
+        <div class="row row-margin">
+            <div class="col-lg-12">
+                <textarea rows="5" class="form-control"></textarea>
+            </div>
+        </div>
+        <div class="row row-margin">
+            <div class="col-lg-12">
+                <h4>Request Body</h4>
+                <textarea rows="5" class="form-control"></textarea>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
+        <div class="row row-margin">
+            <button class="btn btn-primary">Excute</button>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/Scripts/angular.min.js"></script>
+    <script type="text/javascript">
+        (function (angular) {
+            var app = angular.module("WebApp", []);
+            app.controller("HomeCtrl", ["$http", "$scope", function ($http, $scope) {
+                $scope.methods = ["GET", "POST"];
+            }]);
+        })(window.angular);
+    </script>
+}
